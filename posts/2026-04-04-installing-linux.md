@@ -1,6 +1,6 @@
 ---
 title: Uninstalling Windows, Installing Linux
-date: 2024-04-04
+date: 2026-04-04
 description: I write about my experience installing Linux and removing Windows
 ---
 
