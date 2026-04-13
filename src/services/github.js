@@ -1,14 +1,66 @@
-import matter from 'gray-matter';
-import { Buffer } from 'buffer';
+/**
+ * GitHub Integration Service
+ * Fetches and parses Markdown posts from a GitHub repository using the Contents API.
+ */
 
-const GITHUB_USERNAME = 'kyaaron'; // TODO: Update with actual username
-const GITHUB_REPO = 'aaron-blog'; // TODO: Update with actual repo
+const GITHUB_USERNAME = 'kyaaron'; 
+const GITHUB_REPO = 'aaron-blog'; 
 const POSTS_FOLDER = 'posts';
 
 const cache = {
   postList: null,
   posts: new Map(),
 };
+
+/**
+ * Parses simple YAML frontmatter from a Markdown string.
+ * Returns { frontmatter: {}, body: "" }
+ */
+function parseFrontmatter(text) {
+  const frontmatterRegex = /^---\s*\n([\s\S]*?)\n---\s*\n([\s\S]*)$/;
+  const match = text.match(frontmatterRegex);
+
+  if (!match) {
+    return { frontmatter: {}, body: text };
+  }
+
+  const [, yamlStr, body] = match;
+  const frontmatter = {};
+
+  // Simple key-value parser for frontmatter
+  yamlStr.split('\n').forEach((line) => {
+    const colonIndex = line.indexOf(':');
+    if (colonIndex > -1) {
+      const key = line.slice(0, colonIndex).trim();
+      const value = line.slice(colonIndex + 1).trim();
+      // Basic cleanup for quoted strings
+      frontmatter[key] = value.replace(/^['"](.*)['"]$/, '$1');
+    }
+  });
+
+  return { frontmatter, body };
+}
+
+/**
+ * Decodes a base64 string including UTF-8 characters.
+ */
+function decodeBase64(str) {
+  // Replace newlines which GitHub API might include in base64
+  const cleanedStr = str.replace(/\s/g, '');
+  try {
+    // Correctly handle UTF-8 characters in base64
+    return decodeURIComponent(
+      atob(cleanedStr)
+        .split('')
+        .map((c) => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2))
+        .join('')
+    );
+  } catch (e) {
+    console.error('Base64 decode failed:', e);
+    // Fallback to simple atob if UTF-8 decode fails
+    return atob(cleanedStr);
+  }
+}
 
 /**
  * Fetches the list of posts from GitHub.
@@ -23,7 +75,7 @@ export async function fetchPostList() {
     );
 
     if (!response.ok) {
-      throw new Error('Failed to fetch posts from GitHub');
+      throw new Error(`Failed to fetch posts from GitHub: ${response.statusText}`);
     }
 
     const files = await response.json();
@@ -33,7 +85,6 @@ export async function fetchPostList() {
       .filter((file) => file.name.endsWith('.md'))
       .sort((a, b) => b.name.localeCompare(a.name))
       .map((file) => {
-        // Basic slug from filename
         const slug = file.name.replace('.md', '');
         return {
           slug,
@@ -66,11 +117,12 @@ export async function fetchPostContent(slug) {
     }
 
     const data = await response.json();
-    // GitHub API returns content as base64
-    const content = Buffer.from(data.content, 'base64').toString('utf8');
     
-    // Parse frontmatter
-    const { data: frontmatter, content: body } = matter(content);
+    // Use browser-native decoding
+    const rawContent = decodeBase64(data.content);
+    
+    // Parse frontmatter manually
+    const { frontmatter, body } = parseFrontmatter(rawContent);
 
     const post = {
       slug,
