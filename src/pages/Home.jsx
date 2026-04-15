@@ -50,7 +50,7 @@ const Home = () => {
             Recent Writing
           </h1>
           <p className="mt-4 text-lg text-gray-500 leading-relaxed">
-            Exploring technology, development, and more.
+            My personal blog exploring technology, software development, AI, and more.
           </p>
         </div>
         <PostList posts={posts} loading={loading} error={error} />
