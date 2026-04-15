@@ -1,5 +1,5 @@
 ---
-title: Moving Up in Codewards
+title: Moving Up in Codewars
 date: 2026-03-06
 description: I've been making progress in my daily Codewards problem solving
 ---
