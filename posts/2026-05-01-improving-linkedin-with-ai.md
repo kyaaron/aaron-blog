@@ -21,7 +21,7 @@ I started making some changes it recommended. My header was too bland, so it sug
 
 It also helped me rewrite my job duties. Instead of just a list of duties, it suggested ways to explain the "task-action-result" of everything I did. It also suggested ways to explain my tasks from my non-technical roles in a way that would be interesting for someone hiring software developers. I had never thought of that!
 
-Lastly, it gave me a few tips on improving the About section. I added a techinical skills section to specifically list languages, frameworks, and skills relevant to software development that I was well-versed in. The ending recruiter attention score for my profile after a few hours of work was now an 84/1000. Much better!
+Lastly, it gave me a few tips on improving the About section. I added a techinical skills section to specifically list languages, frameworks, and skills relevant to software development that I was well-versed in. The ending recruiter attention score for my profile after a few hours of work was now an 84/100. Much better!
 
 ## Overall thoughts
 I think my LinkedIn profile has improved as a result of using LLMs for review. I found it interesting that different LLMs can or cannot access LinkedIn URLs. I think that's lame and stupid, but that's the way the corporate world works sometimes. I still think having an actual human, especially one who is a current recruiter, reviewing my profile is much more valuable. But I think it's also fair to say an LLM can do a solid job.
