@@ -40,3 +40,8 @@ CLI tools usually give you a usage/efficiency report when you close out. I love 
 Keep using the tools. Use Antigravity CLI to build a project from start to finish, then turn around and use Cursor's agent. Which one produces better code? Which one achieved your desired outcome quicker without the back and forth? Which one is faster at response? At the time of this writing, I've been unimpressed with Antigravity CLI and have moved to Cursor, since Cursor's agent has been faster and had better network connections. 
 
 The more you use the tools though, the more you'll get better at prompting, efficient coding, and token saving. We don't want to tokenmaxx y'all. That will crush your wallet, or drain the company account. 
+
+So there! These are seven techniques I've been using with AI to improve my prompting, return better outputs, and build quicker and more efficiently without trying to max the tokens I'm alloted on any of my AI plans (spoiler: I'm on free plans). 
+
+## And Lastly...
+If you made it this far in the blog, thank you for reading! I am Aaron, an experienced low-code and web developer from the United States and currently living in South Korea. I make cool stuff and help organizations solve problems using code and my knowledge of AI tooling. Feel free to connect with me on [LinkedIn](https://www.linkedin.com/in/aaronmccollum/) or follow me on [Bluesky](https://bsky.app/profile/aaronmccollum.bsky.social) — happy to connect for a coffee chat as well!
